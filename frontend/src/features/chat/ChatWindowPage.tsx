@@ -6,7 +6,6 @@ import { useEcho } from '../../hooks/useEcho';
 import { useAuthStore } from '../../stores/useAuthStore';
 import MainLayout from '../../layouts/MainLayout';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
 
 interface Message {
     id: number;
@@ -39,7 +38,7 @@ export default function ChatWindowPage() {
     const { data: chatData, isLoading } = useQuery({
         queryKey: ['chat', id],
         queryFn: async () => {
-            const response = await axios.get<{ data: ChatData }>(`/chat/${id}`);
+            const response = await axios.get<{ data: ChatData }>(`/user/chat/${id}`);
             return response.data.data;
         },
         enabled: !!id
@@ -77,7 +76,7 @@ export default function ChatWindowPage() {
 
     const sendMessageMutation = useMutation({
         mutationFn: async (msg: string) => {
-            await axios.post('/chat', {
+            await axios.post('/user/chat', {
                 conversation_id: id,
                 message: msg
             });

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from '../../app/axios';
 import MainLayout from '../../layouts/MainLayout';
@@ -19,7 +19,7 @@ export default function ChatListPage() {
     const { data: conversations, isLoading } = useQuery({
         queryKey: ['conversations'],
         queryFn: async () => {
-            const response = await axios.get<{ data: Conversation[] }>('/chat');
+            const response = await axios.get<{ data: Conversation[] }>('/user/chat');
             return response.data.data;
         }
     });

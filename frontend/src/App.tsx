@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { queryClient } from './app/queryClient';
 import { useUIStore } from './stores/useUIStore';
 import { useEffect } from 'react';
+import { ProtectedRoute, SellerRoute, AdminRoute } from './components/RouteGuards';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -27,7 +28,6 @@ import './index.css';
 function App() {
   const { isDarkMode, setDarkMode } = useUIStore();
 
-  // Initialize dark mode on mount
   useEffect(() => {
     const stored = localStorage.getItem('redstore_dark_mode');
     if (stored) {
@@ -44,30 +44,29 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           
-          {/* Features */}
+          {/* Public product browsing */}
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/orders" element={<OrderHistoryPage />} />
-          
-          <Route path="/chat" element={<ChatListPage />} />
-          <Route path="/chat/:id" element={<ChatWindowPage />} />
-          
-          <Route path="/dashboard" element={<DashboardPage />} />
+          {/* Protected user routes */}
+          <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+          <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+          <Route path="/orders" element={<ProtectedRoute><OrderHistoryPage /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><ChatListPage /></ProtectedRoute>} />
+          <Route path="/chat/:id" element={<ProtectedRoute><ChatWindowPage /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
 
-          {/* Seller Routes */}
-          <Route path="/seller/dashboard" element={<SellerDashboard />} />
-          <Route path="/seller/products" element={<SellerProductList />} />
-          <Route path="/seller/products/new" element={<SellerProductForm />} />
-          <Route path="/seller/products/:id/edit" element={<SellerProductForm />} />
-          <Route path="/seller/orders" element={<SellerOrderList />} />
+          {/* Seller Routes - Protected */}
+          <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>} />
+          <Route path="/seller/products" element={<SellerRoute><SellerProductList /></SellerRoute>} />
+          <Route path="/seller/products/new" element={<SellerRoute><SellerProductForm /></SellerRoute>} />
+          <Route path="/seller/products/:id/edit" element={<SellerRoute><SellerProductForm /></SellerRoute>} />
+          <Route path="/seller/orders" element={<SellerRoute><SellerOrderList /></SellerRoute>} />
 
-          {/* Admin Routes */}
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/users" element={<AdminUserList />} />
-          <Route path="/admin/stores" element={<AdminStoreList />} />
+          {/* Admin Routes - Protected */}
+          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/admin/users" element={<AdminRoute><AdminUserList /></AdminRoute>} />
+          <Route path="/admin/stores" element={<AdminRoute><AdminStoreList /></AdminRoute>} />
         </Routes>
         <Toaster
           position="top-right"

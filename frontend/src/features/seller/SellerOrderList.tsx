@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '../../app/axios';
-import MainLayout from '../../layouts/MainLayout';
+import SellerLayout from '../../layouts/SellerLayout';
 import { formatCurrency } from '../../utils/format';
 import toast from 'react-hot-toast';
 
@@ -24,10 +24,10 @@ export default function SellerOrderList() {
         }
     });
 
-    if (isLoading) return <MainLayout><div className="p-8 text-center">Loading...</div></MainLayout>;
+    if (isLoading) return <SellerLayout><div className="p-8 text-center">Loading...</div></SellerLayout>;
 
     return (
-        <MainLayout>
+        <SellerLayout>
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <h1 className="font-heading text-3xl font-bold mb-8">Incoming Orders</h1>
 
@@ -80,6 +80,6 @@ export default function SellerOrderList() {
                     ))}
                 </div>
             </div>
-        </MainLayout>
+        </SellerLayout>
     );
 }

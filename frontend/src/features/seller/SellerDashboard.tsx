@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from '../../app/axios';
-import MainLayout from '../../layouts/MainLayout';
-import { formatCurrency } from '../../utils/format';
+import SellerLayout from '../../layouts/SellerLayout';
 import Button from '../../components/Button';
 
 export default function SellerDashboard() {
@@ -15,7 +14,7 @@ export default function SellerDashboard() {
     });
 
     return (
-        <MainLayout>
+        <SellerLayout>
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="font-heading text-3xl font-bold">Seller Dashboard</h1>
@@ -57,6 +56,6 @@ export default function SellerDashboard() {
                     </Link>
                 </div>
             </div>
-        </MainLayout>
+        </SellerLayout>
     );
 }

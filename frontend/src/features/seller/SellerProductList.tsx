@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '../../app/axios';
-import MainLayout from '../../layouts/MainLayout';
+import SellerLayout from '../../layouts/SellerLayout';
 import Button from '../../components/Button';
 import { formatCurrency } from '../../utils/format';
 import toast from 'react-hot-toast';
@@ -26,10 +26,10 @@ export default function SellerProductList() {
         }
     });
 
-    if (isLoading) return <MainLayout><div className="p-8 text-center">Loading...</div></MainLayout>;
+    if (isLoading) return <SellerLayout><div className="p-8 text-center">Loading...</div></SellerLayout>;
 
     return (
-        <MainLayout>
+        <SellerLayout>
             <div className="max-w-7xl mx-auto px-4 py-8">
                  <div className="flex justify-between items-center mb-8">
                     <h1 className="font-heading text-3xl font-bold">My Products</h1>
@@ -85,6 +85,6 @@ export default function SellerProductList() {
                     </table>
                 </div>
             </div>
-        </MainLayout>
+        </SellerLayout>
     );
 }

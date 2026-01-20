@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from '../../app/axios';
-import MainLayout from '../../layouts/MainLayout';
+import SellerLayout from '../../layouts/SellerLayout';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import toast from 'react-hot-toast';
@@ -72,7 +72,7 @@ export default function SellerProductForm() {
     };
 
     return (
-        <MainLayout>
+        <SellerLayout>
              <div className="max-w-3xl mx-auto px-4 py-8">
                 <h1 className="font-heading text-3xl font-bold mb-8">{isEdit ? 'Edit Product' : 'New Product'}</h1>
                 
@@ -151,6 +151,6 @@ export default function SellerProductForm() {
                     </div>
                 </form>
              </div>
-        </MainLayout>
+        </SellerLayout>
     );
 }

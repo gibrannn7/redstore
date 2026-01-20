@@ -119,7 +119,7 @@ export default function ProductDetail() {
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
-                      {variant.variant_value}
+                      {variant.value}
                     </button>
                   ))}
                 </div>
