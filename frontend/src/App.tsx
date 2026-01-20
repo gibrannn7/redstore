@@ -7,6 +7,21 @@ import { useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import ProductList from './features/products/ProductList';
+import ProductDetail from './features/products/ProductDetail';
+import CartPage from './features/cart/CartPage';
+import CheckoutPage from './features/checkout/CheckoutPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
+import ChatListPage from './features/chat/ChatListPage';
+import ChatWindowPage from './features/chat/ChatWindowPage';
+import DashboardPage from './features/dashboard/DashboardPage';
+import SellerDashboard from './features/seller/SellerDashboard';
+import SellerProductList from './features/seller/SellerProductList';
+import SellerProductForm from './features/seller/SellerProductForm';
+import SellerOrderList from './features/seller/SellerOrderList';
+import AdminDashboard from './features/admin/AdminDashboard';
+import AdminUserList from './features/admin/AdminUserList';
+import AdminStoreList from './features/admin/AdminStoreList';
 import './index.css';
 
 function App() {
@@ -28,6 +43,31 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          
+          {/* Features */}
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:slug" element={<ProductDetail />} />
+          
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/orders" element={<OrderHistoryPage />} />
+          
+          <Route path="/chat" element={<ChatListPage />} />
+          <Route path="/chat/:id" element={<ChatWindowPage />} />
+          
+          <Route path="/dashboard" element={<DashboardPage />} />
+
+          {/* Seller Routes */}
+          <Route path="/seller/dashboard" element={<SellerDashboard />} />
+          <Route path="/seller/products" element={<SellerProductList />} />
+          <Route path="/seller/products/new" element={<SellerProductForm />} />
+          <Route path="/seller/products/:id/edit" element={<SellerProductForm />} />
+          <Route path="/seller/orders" element={<SellerOrderList />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<AdminUserList />} />
+          <Route path="/admin/stores" element={<AdminStoreList />} />
         </Routes>
         <Toaster
           position="top-right"
